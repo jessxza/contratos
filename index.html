@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Contratos Públicos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Contratos Públicos</h1>
+    </header>
+
+    <section class="pesquisa">
+      <h2>Pesquisa</h2>
+      <div class="filtros">
+        <input id="entidade" placeholder="Entidade adjudicante">
+        <input id="cpv" placeholder="CPV">
+        <select id="tipo">
+          <option value="">Tipo de Contrato</option>
+          <option value="Aquisição de bens móveis">Aquisição de bens móveis</option>
+          <option value="Aquisição de serviços">Aquisição de serviços</option>
+          <option value="Aquisição de bens imóveis">Aquisição de bens imóveis</option>
+        </select>
+        <button onclick="pesquisar()">Pesquisar</button>
+      </div>
+    </section>
+
+    <section class="tabela">
+      <table id="tabela">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Data</th>
+            <th>Entidade</th>
+            <th>Descrição</th>
+            <th>CPV</th>
+            <th>Tipo</th>
+            <th>Preço (€)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
