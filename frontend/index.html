@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Contratos Públicos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Contratos Públicos</h1>
+    </header>
+
+   <section class="pesquisa">
+  <h2>Pesquisa</h2>
+
+  <div class="filtros">
+    <input id="entidade" placeholder="Entidade adjudicante">
+    <input id="cpv" placeholder="CPV">
+
+    <select id="tipo">
+      <option value="">Tipo de Contrato</option>
+      <option value="Aquisição de bens móveis">Aquisição de bens móveis</option>
+      <option value="Aquisição de serviços">Aquisição de serviços</option>
+      <option value="Aquisição de bens imóveis">Aquisição de bens imóveis</option>
+    </select>
+
+    <input type="date" id="dataInicio" placeholder="Data início">
+    <input type="date" id="dataFim" placeholder="Data fim">
+
+    <input type="number" id="precoMin" placeholder="Preço mínimo (€)">
+    <input type="number" id="precoMax" placeholder="Preço máximo (€)">
+
+    <button onclick="pesquisar()">Pesquisar</button>
+  </div>
+</section>
+
+    <section class="tabela">
+      <table id="tabela">
+      
+         <thead>
+  <th>Nº</th>
+<th onclick="ordenarPorData()" style="cursor:pointer;">Data</th>
+<th>Entidade</th>
+<th>Descrição</th>
+<th>CPV</th>
+<th>Tipo</th>
+<th onclick="ordenarPorPreco()" style="cursor:pointer;">Preço</th>
+</thead>
+    
+        <tbody></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
