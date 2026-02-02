@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+
+# Ficheiros com credenciais
+db.js
+.env
+
+# Logs
+*.log
+
+# VSCode settings
+.vscode/
