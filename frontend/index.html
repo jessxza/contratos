@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Contratos Públicos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Contratos Públicos</h1>
+</header>
+
+<section class="pesquisa">
+  <h2>Pesquisa</h2>
+
+  <div class="filtros">
+    <input id="entidade" placeholder="Entidade adjudicante"> <!-- campo criado; o JS vem buscar o valor -->
+    <input id="cpv" placeholder="CPV">
+
+    <select id="tipo">
+      <option value="">Tipo de Contrato</option>
+      <option value="Aquisição de bens móveis">Aquisição de bens móveis</option>
+      <option value="Aquisição de serviços">Aquisição de serviços</option>
+      <option value="Locação de bens móveis">Locação de bens móveis</option>
+    </select>
+
+    <input type="date" id="dataInicio">
+    <input type="date" id="dataFim">
+
+    <input type="number" id="precoMin" placeholder="Preço mínimo (€)">
+    <input type="number" id="precoMax" placeholder="Preço máximo (€)">
+
+    <select id="ordemData">
+      <option value="">Ordenar por Data</option>
+      <option value="asc">Data ascendente</option>
+      <option value="desc">Data descendente</option>
+    </select>
+
+    <select id="ordemPreco">
+      <option value="">Ordenar por Preço</option>
+      <option value="asc">Preço ascendente</option>
+      <option value="desc">Preço descendente</option>
+    </select>
+
+<button onclick="aplicarFiltrosEOrdenacao()">Pesquisar</button> <!-- trigger para os filtros, chama a função q está no script -->
+  </div>
+</section> 
+
+<section class="tabela">
+ <table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Data</th>
+      <th>Entidade</th>
+      <th>Descrição</th>
+      <th>Preço</th>
+      <th>CPV</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody id="tabela-contratos">  <!-- começa vazia, javascript cria linhas <tr> dinamicamente -->
+    
+  </tbody>
+</table>
+</section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
