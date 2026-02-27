@@ -15,8 +15,8 @@
         <section class="pesquisa">
             <h2>Pesquisa</h2>
             <div class="filtros">
+
                 <input id="entidade" placeholder="Entidade adjudicante">
-                <!-- campo criado; o JS vem buscar o valor -->
 
                 <input id="cpv" placeholder="CPV">
 
@@ -46,7 +46,6 @@
                 </select>
 
                 <button onclick="aplicarFiltrosEOrdenacao()">Pesquisar</button>
-                <!-- trigger para os filtros, chama a função que está no script -->
             </div>
         </section>
 
@@ -64,13 +63,17 @@
                         <th>Tipo</th>
                     </tr>
                 </thead>
+
                 <tbody id="tabela-contratos">
-                    <!-- começa vazia, javascript cria linhas <tr> dinamicamente -->
+                    <!-- preenchido dinamicamente -->
                 </tbody>
             </table>
+
+            <!-- PAGINAÇÃO (faltava isto!) -->
+            <div id="paginacao" style="text-align:center;"></div>
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 </html>
