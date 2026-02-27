@@ -3,7 +3,7 @@ body {
     background: #eef1f5;
     margin: 0;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
 }
 
 main {
@@ -81,7 +81,7 @@ tr:hover {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /* Botão */
