@@ -15,9 +15,9 @@ let contratosFiltrados = [];
 
 async function carregarContratos() {
     try {
-        const res = await fetch('http://localhost:3001/api/contratos');
+        const res = await fetch('https://contratos-backend-ywki.onrender.com/api/contratos')
         const dados = await res.json();
-        console.log(dados); // para veres se os contratos chegam mesmo
+        console.log(dados); // para ver se os contratos chegam mesmo
         contratosOriginais = dados;
         contratosFiltrados = [...contratosOriginais];
         atualizar();
