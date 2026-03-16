@@ -23,14 +23,25 @@
     }
   </style>
 </head>
+
 <body>
   <main>
+
+    <!-- Cabeçalho -->
     <header>
       <h1>Contratos Públicos</h1>
     </header>
 
+    <!-- Secção de Pesquisa -->
     <section class="pesquisa">
-      <h2>Pesquisa</h2>
+
+      <!-- Topo: Título + Botão Importar -->
+      <div class="pesquisa-top">
+        <h2>Pesquisa</h2>
+        <button id="btnImportar">Importar Excel</button>
+      </div>
+
+      <!-- Filtros -->
       <div class="filtros">
         <input id="entidade" placeholder="Entidade ad">
         <input id="cpv" placeholder="CPV">
@@ -61,10 +72,10 @@
         </select>
 
         <button onclick="aplicarFiltrosEOrdenacao()">Pesquisar</button>
-        <button id="btnImportar">Importar Excel</button>
       </div>
     </section>
 
+    <!-- Tabela -->
     <section class="tabela">
       <table>
         <thead>
@@ -78,23 +89,27 @@
             <th>Tipo</th>
           </tr>
         </thead>
-        <tbody id="tabela-contratos">
-        </tbody>
+        <tbody id="tabela-contratos"></tbody>
       </table>
 
       <div id="paginacao" style="text-align:center;"></div>
     </section>
 
+    <!-- Popup Upload Excel -->
     <div id="popupExcel" class="popup" style="display:none;">
       <div class="popup-conteudo">
         <h3>Importar ficheiro Excel</h3>
+
         <input type="file" id="inputExcel" accept=".xlsx,.xls" />
         <br><br>
+
         <button id="btnEnviarExcel">Enviar</button>
         <button id="btnFecharPopup">Fechar</button>
+
         <p id="statusUpload"></p>
       </div>
     </div>
+
   </main>
 
   <script src="script2.js"></script>

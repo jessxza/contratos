@@ -16,7 +16,6 @@ async function carregarContratos() {
   try {
     const res = await fetch('https://contratos-backend-ywki.onrender.com/api/contratos');
     const dados = await res.json();
-    console.log(dados);
     contratosOriginais = dados;
     contratosFiltrados = [...contratosOriginais];
     paginaAtual = 1;
@@ -194,8 +193,6 @@ function criarBotoes() {
 =============================== */
 
 function atualizar() {
-  console.log('📊 Total filtrados:', contratosFiltrados.length);
-  console.log('📄 Pagina atual:', paginaAtual);
   renderPaginado();
   criarBotoes();
 }
@@ -212,19 +209,8 @@ function formatarPreco(valor) {
   });
 }
 
-function toggleFiltros() {
-  const painel = document.getElementById('painelFiltros');
-  const botao = document.querySelector('.btn-toggle');
-
-  painel.classList.toggle('aberto');
-
-  botao.textContent = painel.classList.contains('aberto')
-    ? 'Esconder filtros'
-    : 'Mostrar filtros';
-}
-
 /* ===============================
-   DOMContentLoaded: ligar botões + carregar dados
+   DOMContentLoaded
 =============================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -245,6 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
     popupExcel.style.display = 'none';
   });
 
+  /* ===============================
+     UPLOAD EXCEL (SEM JSON)
+  =============================== */
+
   btnEnviarExcel.addEventListener('click', async () => {
     if (!inputExcel.files.length) {
       statusUpload.textContent = 'Escolhe um ficheiro Excel primeiro.';
@@ -263,21 +253,20 @@ document.addEventListener('DOMContentLoaded', () => {
         body: formData
       });
 
-      const dados = await res.json();
+      const texto = await res.text(); // nunca usamos res.json()
 
       if (!res.ok) {
-        throw new Error(dados.erro || 'Erro no upload');
+        throw new Error('Erro no upload: ' + texto.slice(0, 120));
       }
 
-      statusUpload.textContent = `✅ ${dados.inseridos} contratos inseridos.`;
-
+      statusUpload.textContent = '✅ Upload concluído. Resposta do servidor: ' + texto.slice(0, 120);
       await carregarContratos();
+
     } catch (err) {
       console.error(err);
       statusUpload.textContent = '❌ Erro ao enviar ficheiro: ' + err.message;
     }
   });
 
-  // carregar contratos depois de o DOM estar pronto
   carregarContratos();
 });
