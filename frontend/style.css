@@ -98,3 +98,20 @@ button {
 button:hover {
     background: #0055aa;
 }
+
+#btnImportar{
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  padding: 10px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#btnImportar:hover{
+  background:#0056b3;
+}

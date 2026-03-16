@@ -319,6 +319,61 @@ function toggleFiltros() {
   }
 }
 
+/* ===============================
+   POPUP EXCEL
+=============================== */
+
+const btnImportar = document.getElementById("btnImportar");
+const popup = document.getElementById("popupExcel");
+const btnFechar = document.getElementById("btnFecharPopup");
+const btnEnviar = document.getElementById("btnEnviarExcel");
+const inputExcel = document.getElementById("inputExcel");
+const statusUpload = document.getElementById("statusUpload");
+
+
+btnImportar.onclick = () => {
+  popup.style.display = "flex";
+};
+
+btnFechar.onclick = () => {
+  popup.style.display = "none";
+  statusUpload.textContent = "";
+};
+
+
+btnEnviar.onclick = async () => {
+
+  const file = inputExcel.files[0];
+
+  if (!file) {
+    statusUpload.textContent = "Seleciona um ficheiro.";
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("excel", file);
+
+  statusUpload.textContent = "A enviar...";
+
+  try {
+
+    const res = await fetch("http://localhost:3000/api/importar-excel", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    statusUpload.textContent = data.mensagem;
+
+    carregarContratos(); // atualizar tabela
+
+  } catch (err) {
+    statusUpload.textContent = "Erro ao enviar ficheiro.";
+    console.error(err);
+  }
+
+};
 
 
 /* ===============================

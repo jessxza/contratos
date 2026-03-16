@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Contratos Públicos</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .popup-conteudo {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      min-width: 320px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Contratos Públicos</h1>
+    </header>
+
+    <section class="pesquisa">
+      <h2>Pesquisa</h2>
+      <div class="filtros">
+        <input id="entidade" placeholder="Entidade ad">
+        <input id="cpv" placeholder="CPV">
+
+        <select id="tipo">
+          <option value="">Tipo de Contrato</option>
+          <option value="Aquisição de bens móveis">Aquisição de bens móveis</option>
+          <option value="Aquisição de serviços">Aquisição de serviços</option>
+          <option value="Locação de bens móveis">Locação de bens móveis</option>
+        </select>
+
+        <input type="date" id="dataInicio">
+        <input type="date" id="dataFim">
+
+        <input type="number" id="precoMin" placeholder="Preço mínimo (€)">
+        <input type="number" id="precoMax" placeholder="Preço máximo (€)">
+
+        <select id="ordemData">
+          <option value="">Ordenar por Data</option>
+          <option value="asc">Data ascendente</option>
+          <option value="desc">Data descendente</option>
+        </select>
+
+        <select id="ordemPreco">
+          <option value="">Ordenar por Preço</option>
+          <option value="asc">Preço ascendente</option>
+          <option value="desc">Preço descendente</option>
+        </select>
+
+        <button onclick="aplicarFiltrosEOrdenacao()">Pesquisar</button>
+        <button id="btnImportar">Importar Excel</button>
+      </div>
+    </section>
+
+    <section class="tabela">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Entidade</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>CPV</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-contratos">
+        </tbody>
+      </table>
+
+      <div id="paginacao" style="text-align:center;"></div>
+    </section>
+
+    <div id="popupExcel" class="popup" style="display:none;">
+      <div class="popup-conteudo">
+        <h3>Importar ficheiro Excel</h3>
+        <input type="file" id="inputExcel" accept=".xlsx,.xls" />
+        <br><br>
+        <button id="btnEnviarExcel">Enviar</button>
+        <button id="btnFecharPopup">Fechar</button>
+        <p id="statusUpload"></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script2.js"></script>
+</body>
+</html>
