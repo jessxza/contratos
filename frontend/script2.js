@@ -234,39 +234,41 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ===============================
      UPLOAD EXCEL (SEM JSON)
   =============================== */
+btnEnviarExcel.addEventListener('click', async () => {
+  if (!inputExcel.files.length) {
+    statusUpload.textContent = 'Escolhe um ficheiro Excel primeiro.';
+    return;
+  }
 
-  btnEnviarExcel.addEventListener('click', async () => {
-    if (!inputExcel.files.length) {
-      statusUpload.textContent = 'Escolhe um ficheiro Excel primeiro.';
-      return;
+  const ficheiro = inputExcel.files[0];
+  const formData = new FormData();
+  formData.append('ficheiro', ficheiro);
+
+  statusUpload.textContent = 'A enviar...';
+
+  try {
+    const res = await fetch('https://contratos-backend-ywki.onrender.com/api/upload-excel', {
+      method: 'POST',
+      body: formData
+    });
+
+    const texto = await res.text();
+
+    console.log("RESPOSTA DO SERVIDOR:");
+    console.log(texto);
+
+    if (!res.ok) {
+      throw new Error('Erro no upload: ' + texto);
     }
 
-    const ficheiro = inputExcel.files[0];
-    const formData = new FormData();
-    formData.append('ficheiro', ficheiro);
+    statusUpload.textContent = '✅ Upload concluído.';
+    await carregarContratos();
 
-    statusUpload.textContent = 'A enviar...';
-
-    try {
-      const res = await fetch('https://contratos-backend-ywki.onrender.com/api/upload-excel', {
-        method: 'POST',
-        body: formData
-      });
-
-      const texto = await res.text(); // nunca usamos res.json()
-
-      if (!res.ok) {
-        throw new Error('Erro no upload: ' + texto.slice(0, 120));
-      }
-
-      statusUpload.textContent = '✅ Upload concluído. Resposta do servidor: ' + texto.slice(0, 120);
-      await carregarContratos();
-
-    } catch (err) {
-      console.error(err);
-      statusUpload.textContent = '❌ Erro ao enviar ficheiro: ' + err.message;
-    }
-  });
+  } catch (err) {
+    console.error(err);
+    statusUpload.textContent = '❌ Erro ao enviar ficheiro: ' + err.message;
+  }
+});
 
   carregarContratos();
 });
